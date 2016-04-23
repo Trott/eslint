@@ -72,6 +72,7 @@ This rule has an object option:
 
 * `"SwitchCase"` (default: 0) enforces indentation level for `switch` cases
 * `"VariableDeclarator"` (default: 1) enforces indentation level for `var` declarators; can also take an object to define separate rules for `var`, `let` and `const` declarations.
+* `"Chaining"` (default: 1) enforces indentation level for multi-line property chains
 
 Level of indentation denotes the multiple of the indent specified. Example:
 
@@ -82,6 +83,9 @@ Level of indentation denotes the multiple of the indent specified. Example:
 * Indent of 2 spaces with SwitchCase set to 0 will not indent `SwitchCase` with respect to switch.
 * Indent of 2 spaces with SwitchCase set to 2 will indent `SwitchCase` with 4 space with respect to switch.
 * Indent of tabs with SwitchCase set to 2 will indent `SwitchCase` with 2 tabs with respect to switch.
+* Indent of 2 spaces with Chaining set to 0 will indent the multi-line property chains with 0 spaces.
+* Indent of 2 spaces with Chaining set to 1 will indent the multi-line property chains with 2 spaces.
+* Indent of 2 spaces with Chaining set to 2 will indent the multi-line property chains with 4 spaces.
 
 ### tab
 
@@ -208,6 +212,29 @@ const a = 1,
       b = 2,
       c = 3;
 ```
+
+### Chaining
+
+Examples of **incorrect** code for this rule with the `2, { "Chaining": 1 }` options:
+
+```js
+/*eslint indent: ["error", 2, { "Chaining": 1 }]*/
+
+foo
+.bar
+.baz()
+```
+
+Examples of **correct** code for this rule with the `2, { "Chaining": 1 }` option:
+
+```js
+/*eslint indent: ["error", 2, { "Chaining": 1 }]*/
+
+foo
+  .bar
+  .baz();
+```
+
 
 ## Compatibility
 

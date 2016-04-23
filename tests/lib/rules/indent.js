@@ -162,6 +162,21 @@ ruleTester.run("indent", rule, {
             code:
             "function test() {\n" +
             "    return client.signUp(email, PASSWORD, { preVerified: true })\n" +
+            "        .then(function (result) {\n" +
+            "            var x = 1;\n" +
+            "            var y = 1;\n" +
+            "        }, function(err){\n" +
+            "            var o = 1 - 2;\n" +
+            "            var y = 1 - 2;\n" +
+            "            return true;\n" +
+            "        })\n" +
+            "}",
+            options: [4]
+        },
+        {
+            code:
+            "function test() {\n" +
+            "    return client.signUp(email, PASSWORD, { preVerified: true })\n" +
             "    .then(function (result) {\n" +
             "        var x = 1;\n" +
             "        var y = 1;\n" +
@@ -171,8 +186,9 @@ ruleTester.run("indent", rule, {
             "        return true;\n" +
             "    });\n" +
             "}",
-            options: [4]
+            options: [4, {"Chaining": 0}]
         },
+
         {
             code:
             "// hi",
@@ -946,6 +962,22 @@ ruleTester.run("indent", rule, {
                 "    return P.resolve({\n" +
                 "      type: 'POST'\n" +
                 "    })\n" +
+                "      .then(function () {\n" +
+                "        return true;\n" +
+                "      }, function () {\n" +
+                "        return false;\n" +
+                "      });\n" +
+                "  }\n" +
+                "};\n",
+            options: [2]
+        },
+        {
+            code:
+                "var obj = {\n" +
+                "  send: function () {\n" +
+                "    return P.resolve({\n" +
+                "      type: 'POST'\n" +
+                "    })\n" +
                 "    .then(function () {\n" +
                 "      return true;\n" +
                 "    }, function () {\n" +
@@ -953,7 +985,7 @@ ruleTester.run("indent", rule, {
                 "    });\n" +
                 "  }\n" +
                 "};\n",
-            options: [2]
+            options: [2, {"Chaining": 0}]
         },
         {
             code:
@@ -1073,6 +1105,19 @@ ruleTester.run("indent", rule, {
             "    });\n" +
             "};",
             parserOptions: { ecmaVersion: 6 },
+            options: [4, {"Chaining": 0}]
+        },
+        {
+            code:
+            "const func = function (opts) {\n" +
+            "    return Promise.resolve()\n" +
+            "        .then(() => {\n" +
+            "            [\n" +
+            "                'ONE', 'TWO'\n" +
+            "            ].forEach(command => { doSomething(); });\n" +
+            "        });\n" +
+            "};",
+            parserOptions: { ecmaVersion: 6 },
             options: [4]
         },
         {
@@ -1136,6 +1181,27 @@ ruleTester.run("indent", rule, {
             "}",
             parserOptions: { ecmaVersion: 6 },
             options: [2]
+        },
+        {
+            code:
+            "Buffer.length"
+        },
+        {
+            code:
+            "Buffer\n" +
+            "    .indexOf('a')\n" +
+            "    .toString()"
+        },
+        {
+            code:
+            "Buffer.\n" +
+            "    length"
+        },
+        {
+            code:
+            "Buffer\n" +
+            "    .foo\n" +
+            "    .bar"
         }
     ],
     invalid: [
@@ -1208,6 +1274,8 @@ ruleTester.run("indent", rule, {
                 [120, 4, 6, "VariableDeclaration"],
                 [124, 4, 2, "BreakStatement"],
                 [134, 4, 6, "BreakStatement"],
+                [138, 2, 3, "Punctuator"],
+                [139, 2, 3, "Punctuator"],
                 [143, 4, 0, "ExpressionStatement"],
                 [151, 4, 6, "ExpressionStatement"],
                 [159, 4, 2, "ExpressionStatement"],
@@ -2046,6 +2114,25 @@ ruleTester.run("indent", rule, {
             "}\n",
             options: [4],
             errors: expectedErrors([[4, 4, 2, "Keyword"]])
+        },
+        {
+            code:
+            "Buffer\n" +
+            ".toString()",
+            errors: expectedErrors([[2, 4, 0, "Punctuator"]])
+        },
+        {
+            code:
+            "Buffer\n" +
+            "    .indexOf('a')\n" +
+            ".toString()",
+            errors: expectedErrors([[3, 4, 0, "Punctuator"]])
+        },
+        {
+            code:
+            "Buffer.\n" +
+            "length",
+            errors: expectedErrors([[2, 4, 0, "Identifier"]])
         }
     ]
 });
