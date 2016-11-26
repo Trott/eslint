@@ -40,6 +40,7 @@ ruleTester.run("capitalized-comments", rule, {
         "//\xDCber",
         "//\u03A0",
         "/* Uppercase\nsecond line need not be uppercase */",
+        "// ",
 
         // No options: non-alphabetical is okay
         "//123",
