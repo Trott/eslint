@@ -1,6 +1,7 @@
 /**
- * @fileoverview Tests for no-else-return rule.
+ * @fileoverview Tests for no-useless-else rule.
  * @author Ian Christian Myers
+ * @author Rich Trott
  */
 
 "use strict";
@@ -9,7 +10,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule = require("../../../lib/rules/no-else-return"),
+const rule = require("../../../lib/rules/no-useless-else"),
     RuleTester = require("../../../lib/testers/rule-tester");
 
 //------------------------------------------------------------------------------
@@ -18,7 +19,7 @@ const rule = require("../../../lib/rules/no-else-return"),
 
 const ruleTester = new RuleTester();
 
-ruleTester.run("no-else-return", rule, {
+ruleTester.run("no-useless-else", rule, {
     valid: [
         "function foo() { if (true) { if (false) { return x; } } else { return y; } }",
         "function foo() { if (true) { return x; } return y; }",

@@ -1,4 +1,4 @@
-# Disallow return before else (no-else-return)
+# Disallow return before else (no-useless-else)
 
 If an `if` block contains a `return` statement, the `else` block becomes unnecessary. Its contents can be placed outside of the block.
 
@@ -22,9 +22,9 @@ This rule has an object option:
 
 ```json
 {
-    "no-else-return": ["error", { "allowElseIf": true }],
+    "no-useless-else": ["error", { "allowElseIf": true }],
     // or
-    "no-else-return": ["error", { "allowElseIf": false }]
+    "no-useless-else": ["error", { "allowElseIf": false }]
 }
 ```
 
@@ -36,7 +36,7 @@ This rule has an object option:
 Examples of **incorrect** code for this rule:
 
 ```js
-/*eslint no-else-return: "error"*/
+/*eslint no-useless-else: "error"*/
 
 function foo() {
     if (x) {
@@ -93,7 +93,7 @@ function foo() {
 Examples of **correct** code for this rule:
 
 ```js
-/*eslint no-else-return: "error"*/
+/*eslint no-useless-else: "error"*/
 
 function foo() {
     if (x) {
@@ -137,7 +137,7 @@ function foo() {
 Examples of **incorrect** code for this rule:
 
 ```js
-/*eslint no-else-return: ["error", {allowElseIf: false}]*/
+/*eslint no-useless-else: ["error", {allowElseIf: false}]*/
 
 function foo() {
     if (error) {
@@ -151,7 +151,7 @@ function foo() {
 Examples of **correct** code for this rule:
 
 ```js
-/*eslint no-else-return: ["error", {allowElseIf: false}]*/
+/*eslint no-useless-else: ["error", {allowElseIf: false}]*/
 
 function foo() {
     if (error) {

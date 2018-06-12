@@ -1120,7 +1120,7 @@ describe("Config", () => {
                 const expected = {
                     rules: {
                         quotes: [2, "single"],
-                        "no-else-return": 0,
+                        "no-useless-else": 0,
                         "no-unused-vars": 1,
                         semi: [1, "never"]
                     }
@@ -1136,7 +1136,7 @@ describe("Config", () => {
                 const expected = {
                     rules: {
                         curly: ["error", "multi", "consistent"],
-                        "no-else-return": 0,
+                        "no-useless-else": 0,
                         "no-unused-vars": 1,
                         quotes: [2, "double"],
                         semi: [1, "never"]
@@ -1192,7 +1192,7 @@ describe("Config", () => {
                 const expected = {
                     rules: {
                         "no-console": 0,
-                        "no-else-return": 0,
+                        "no-useless-else": 0,
                         "no-unused-vars": 2,
                         quotes: [2, "double"],
                         semi: [2, "never"]

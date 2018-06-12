@@ -444,7 +444,7 @@ function getFormatterResults() {
             useEslintrc: false,
             baseConfig: { extends: "eslint:recommended" },
             rules: {
-                "no-else-return": 1,
+                "no-useless-else": 1,
                 indent: [1, 4],
                 "space-unary-ops": 2,
                 semi: [1, "always"],
